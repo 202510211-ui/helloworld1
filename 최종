@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헬로월드 동아리 역사</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', 'Segoe UI', sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        /* 네비게이션 */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* 섹션 공통 스타일 */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        /* 역사 섹션 */
+        .history-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background-color: #e9ecef;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 5%;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 5%;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -10px;
+        }
+        
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* 부장 소개 섹션 */
+        .leaders-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .leader-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .leader-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .leader-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .leader-age {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .leader-body {
+            padding: 25px;
+        }
+        
+        .achievements {
+            margin-bottom: 20px;
+        }
+        
+        .achievements h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .achievements ul {
+            list-style-type: none;
+        }
+        
+        .achievements li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .message {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            font-style: italic;
+            line-height: 1.7;
+        }
+        
+        /* 비전 섹션 */
+        .vision-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        .vision-section .section-title h2 {
+            color: white;
+        }
+        
+        .vision-section .section-title h2::after {
+            background-color: var(--accent);
+        }
+        
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* 푸터 */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .history-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-content::before {
+                left: -40px !important;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="container">
+            <h1 class="logo">HELLO WORLD</h1>
+            <p class="subtitle">2020년 창단된 소프트웨어 동아리 헬로월드의 역사와 이야기</p>
+        </div>
+    </header>
+    
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">HW</div>
+            <ul class="nav-links">
+                <li><a href="#history">동아리 역사</a></li>
+                <li><a href="#leaders">역대 부장</a></li>
+                <li><a href="#vision">비전</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 동아리 역사 섹션 -->
+    <section id="history">
+        <div class="container">
+            <div class="section-title">
+                <h2>동아리 역사</h2>
+            </div>
+            
+            <div class="history-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h3>헬로월드 창단</h3>
+                        <p>오동철 선생님에 의해 창단된 헬로월드 동아리는 학생들이 교과 과정 속 이론적 정보 교육에만 머무르지 않고, 실제 소프트웨어를 다루며 개발 경험을 쌓을 수 있는 장을 마련하고자 시작되었습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3>새로운 전환점</h3>
+                        <p>이유준 선생님께서 합류하면서 동아리는 새로운 전환점을 맞이했습니다. 지도 체계가 강화되고 활동 영역이 확대되면서 헬로월드는 빠른 성장을 이루었고, 학생들의 참여도와 성취가 눈에 띄게 증가하였습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>영역 확장</h3>
+                        <p>헬로월드는 학교 내에서만 머무르지 않고 지역과 학교 간 네트워크를 넓히며, 초·고 연합캠프와 중·고 연합캠프를 주관하는 등 중심적인 역할을 맡게 되었습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h3>전성기</h3>
+                        <p>헬로월드는 2025년에 전성기를 맞이하였습니다. 수많은 학생들이 동아리의 문을 두드리며 소프트웨어 교육과 협업 경험을 얻기 위해 참여하였고, 다양한 프로젝트와 대회를 통해 눈에 띄는 성과를 거두었습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 역대 부장 섹션 -->
+    <section id="leaders">
+        <div class="container">
+            <div class="section-title">
+                <h2>역대 부장</h2>
+            </div>
+            
+            <div class="leaders-container">
+                <!-- 곽범준 부장 -->
+                <div class="leader-card">
+                    <div class="leader-header">
+                        <div class="leader-name">곽범준</div>
+                        <div class="leader-age">20세</div>
+                    </div>
+                    <div class="leader-body">
+                        <div class="achievements">
+                            <h4>동아리 업적</h4>
+                            <ul>
+                                <li>4기 헬로월드 동아리 부장</li>
+                                <li>티쳐볼 만들기 진행</li>
+                                <li>마이크로소프트 임파워먼트 프로젝트 진행</li>
+                                <li>프로젝트의 아두이노 소스코드와 회로도 진행</li>
+                                <li>이미지 크롤링 진행</li>
+                                <li>초.고 연합캠프 총괄</li>
+                                <li>테트리스 게임 진행</li>
+                            </ul>
+                        </div>
+                        <div class="message">
+                            "솔직히 고백하자면, 제가 부장을 맡았던 시절은 아쉬움이 많이 남습니다. 하지만 여러분은 저보다 훨씬 더 큰 가능성과 열정을 가지고 있습니다."
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 문승찬 부장 -->
+                <div class="leader-card">
+                    <div class="leader-header">
+                        <div class="leader-name">문승찬</div>
+                        <div class="leader-age">19세</div>
+                    </div>
+                    <div class="leader-body">
+                        <div class="achievements">
+                            <h4>동아리 업적</h4>
+                            <ul>
+                                <li>4기 헬로월드 동아리 부장</li>
+                                <li>2024 헬로월드 부스 운영 총괄</li>
+                                <li>동아리 웹사이트 제작 진행</li>
+                                <li>인공지능 프로젝트 진행</li>
+                                <li>아두이노 자동차 프로젝트 진행</li>
+                            </ul>
+                        </div>
+                        <div class="message">
+                            "저는 헬로월드를 위해 누구보다 열정을 쏟아붓고자 했습니다. 2024년 부스 운영을 총괄하며 밤늦게까지, 때로는 새벽 4시까지도 헬로월드 이름을 알리기 위해 준비했던 기억이 아직도 생생합니다."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 비전 섹션 -->
+    <section id="vision" class="vision-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>헬로월드의 비전</h2>
+            </div>
+            
+            <div class="vision-content">
+                <p>헬로월드의 목적은 단순히 프로그래밍 능력을 기르는 것에 그치지 않고, 창의적이고 혁신적인 문제 해결력을 키워 미래 사회의 변화를 주도할 수 있는 인재를 양성하는 것입니다.</p>
+                <p style="margin-top: 20px;">또한, 장기적으로 학교를 대표하는 ICT 동아리로서, 나아가 지역과 사회에 기여할 수 있는 소프트웨어 공동체로 성장하는 것을 비전으로 삼고 있습니다.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">HELLO WORLD</div>
+                <p>2020년 창단된 소프트웨어 동아리</p>
+                <p>학생들의 개발 경험과 협업 능력을 키우는 공간</p>
+            </div>
+            <div class="copyright">
+                &copy; 2025 헬로월드 동아리. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 스크롤 시 네비게이션 효과
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+        
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 타임라인 애니메이션
+        const timelineItems = document.querySelectorAll('.timeline-content');
+        
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.8;
+            
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                
+                if(itemTop < triggerBottom) {
+                    item.style.opacity = 1;
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // 초기 상태 설정
+        timelineItems.forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
